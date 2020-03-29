@@ -7,7 +7,7 @@
 //
 
 #import "IAFBaseNavigatorController.h"
-
+//,
 @interface IAFBaseNavigatorController ()<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
 
 @end
@@ -59,7 +59,7 @@
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     // 判断要显示的控制器是否是自己
     BOOL isShowHomePage = [viewController isKindOfClass:[viewController class]];
-    
+
     [self.navigationController setNavigationBarHidden:isShowHomePage animated:YES];
 }
 
@@ -67,6 +67,15 @@
 // called before touchesBegan:withEvent: is called on the gesture recognizer for a new touch. return NO to prevent the gesture recognizer from seeing this touch
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.childViewControllers.count > 1;
+}
+
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [super pushViewController:viewController animated:animated];
+
+    if(self.childViewControllers.count >= 1) {
+        viewController.hidesBottomBarWhenPushed = true;
+        self.navigationBarHidden = false;
+    }
 }
 
 @end

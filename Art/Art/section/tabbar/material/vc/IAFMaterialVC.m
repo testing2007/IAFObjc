@@ -30,6 +30,7 @@
 @property (nonatomic, strong) IAFVideoVC    *videoVC;
 @property (nonatomic, strong) IAFLiveVC     *liveVC;
 
+
 @end
 
 @implementation IAFMaterialVC
@@ -62,6 +63,7 @@
 - (IAFHomeVC*)homeVC {
     if(_homeVC == nil) {
         _homeVC = [[IAFHomeVC alloc] init];
+        [self addChildViewController:_homeVC]; //如果不添加， IAFHomeVC 他要是调用 self.navigationController 就是空的
     }
     return _homeVC;
 }
@@ -69,6 +71,7 @@
 - (IAFPhotoVC*)photoVC {
     if(_photoVC == nil) {
         _photoVC = [[IAFPhotoVC alloc] init];
+        [self addChildViewController:_photoVC];
     }
     return _photoVC;
 }
@@ -76,6 +79,7 @@
 - (IAFWorksVC*)worksVC {
     if(_worksVC == nil) {
         _worksVC = [[IAFWorksVC alloc] init];
+        [self addChildViewController:_worksVC];
     }
     return _worksVC;
 }
@@ -83,6 +87,7 @@
 - (IAFTeachVC*)teachVC {
     if(_teachVC == nil) {
         _teachVC = [[IAFTeachVC alloc] init];
+        [self addChildViewController:_teachVC];
     }
     return _teachVC;
 }
@@ -90,6 +95,7 @@
 - (IAFExamVC*)examVC {
     if(_examVC == nil) {
         _examVC = [[IAFExamVC alloc] init];
+        [self addChildViewController:_examVC];
     }
     return _examVC;
 }
@@ -97,6 +103,7 @@
 - (IAFLibraryVC*)libraryVC {
     if(_libraryVC == nil) {
         _libraryVC = [[IAFLibraryVC alloc] init];
+        [self addChildViewController:_libraryVC];
     }
     return _libraryVC;
 }
@@ -105,6 +112,7 @@
 - (IAFVideoVC*)videoVC {
     if(_videoVC == nil) {
         _videoVC = [[IAFVideoVC alloc] init];
+        [self addChildViewController:_videoVC];
     }
     return _videoVC;
 }
@@ -112,6 +120,7 @@
 - (IAFLiveVC*)liveVC {
     if(_liveVC == nil) {
         _liveVC = [[IAFLiveVC alloc] init];
+        [self addChildViewController:_liveVC];
     }
     return _liveVC;
 }

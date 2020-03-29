@@ -54,6 +54,9 @@
 		9400FAD7242F6C6C009FF446 /* IAFTabContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAA6242F6C6C009FF446 /* IAFTabContentView.m */; };
 		9400FAD8242F6C6C009FF446 /* IAFTabHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAA8242F6C6C009FF446 /* IAFTabHeaderView.m */; };
 		9400FAD9242F6C6C009FF446 /* IAFTabContentCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAAC242F6C6C009FF446 /* IAFTabContentCCell.m */; };
+		9400FAE2242F85D7009FF446 /* IAFFloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAE1242F85D7009FF446 /* IAFFloatView.m */; };
+		9400FAE924311AE2009FF446 /* IAFSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAE824311AE2009FF446 /* IAFSearchVC.m */; };
+		9400FAED24311C7B009FF446 /* IAFSearchCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAEC24311C7B009FF446 /* IAFSearchCCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +158,12 @@
 		9400FAAC242F6C6C009FF446 /* IAFTabContentCCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAFTabContentCCell.m; sourceTree = "<group>"; };
 		9400FAAD242F6C6C009FF446 /* IAFTabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFTabView.h; sourceTree = "<group>"; };
 		9400FADA242F6E9F009FF446 /* IAF.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAF.pch; sourceTree = "<group>"; };
+		9400FAE0242F85D7009FF446 /* IAFFloatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFFloatView.h; sourceTree = "<group>"; };
+		9400FAE1242F85D7009FF446 /* IAFFloatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFFloatView.m; sourceTree = "<group>"; };
+		9400FAE724311AE2009FF446 /* IAFSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFSearchVC.h; sourceTree = "<group>"; };
+		9400FAE824311AE2009FF446 /* IAFSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFSearchVC.m; sourceTree = "<group>"; };
+		9400FAEB24311C7B009FF446 /* IAFSearchCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFSearchCCell.h; sourceTree = "<group>"; };
+		9400FAEC24311C7B009FF446 /* IAFSearchCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFSearchCCell.m; sourceTree = "<group>"; };
 		9995EE103FA403AD04492C9C /* Pods-Art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.release.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.release.xcconfig"; sourceTree = "<group>"; };
 		B7489FADD10459D169A62E32 /* Pods_Art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -208,6 +217,7 @@
 		9400FA24242F6C6C009FF446 /* section */ = {
 			isa = PBXGroup;
 			children = (
+				9400FAE424311AA7009FF446 /* search */,
 				9400FA25242F6C6C009FF446 /* tools */,
 				9400FA26242F6C6C009FF446 /* prepare */,
 				9400FA27242F6C6C009FF446 /* tabbar */,
@@ -593,6 +603,7 @@
 		9400FA72242F6C6C009FF446 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				9400FADF242F85BA009FF446 /* floatView */,
 				9400FA73242F6C6C009FF446 /* category */,
 				9400FAA0242F6C6C009FF446 /* tab */,
 			);
@@ -666,6 +677,42 @@
 				9400FAAC242F6C6C009FF446 /* IAFTabContentCCell.m */,
 			);
 			path = tab;
+			sourceTree = "<group>";
+		};
+		9400FADF242F85BA009FF446 /* floatView */ = {
+			isa = PBXGroup;
+			children = (
+				9400FAE0242F85D7009FF446 /* IAFFloatView.h */,
+				9400FAE1242F85D7009FF446 /* IAFFloatView.m */,
+			);
+			path = floatView;
+			sourceTree = "<group>";
+		};
+		9400FAE424311AA7009FF446 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				9400FAEA24311C34009FF446 /* view */,
+				9400FAE524311AB8009FF446 /* vc */,
+			);
+			path = search;
+			sourceTree = "<group>";
+		};
+		9400FAE524311AB8009FF446 /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				9400FAE724311AE2009FF446 /* IAFSearchVC.h */,
+				9400FAE824311AE2009FF446 /* IAFSearchVC.m */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
+		9400FAEA24311C34009FF446 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				9400FAEB24311C7B009FF446 /* IAFSearchCCell.h */,
+				9400FAEC24311C7B009FF446 /* IAFSearchCCell.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		DE74838DD1224E642F3979AC /* Frameworks */ = {
@@ -805,6 +852,7 @@
 				9400FAB3242F6C6C009FF446 /* IAFBaseNavigatorController.m in Sources */,
 				9400FAB9242F6C6C009FF446 /* IAFWorksVC.m in Sources */,
 				9400FAC4242F6C6C009FF446 /* NSDictionary+Accessors.m in Sources */,
+				9400FAED24311C7B009FF446 /* IAFSearchCCell.m in Sources */,
 				9400FAB1242F6C6C009FF446 /* IAFMeVC.m in Sources */,
 				9400FACD242F6C6C009FF446 /* UIColor+Extension.m in Sources */,
 				9400FACA242F6C6C009FF446 /* UIScrollView+Extension.m in Sources */,
@@ -829,6 +877,8 @@
 				9400FAC9242F6C6C009FF446 /* NSObject+Extension.m in Sources */,
 				9400FAC3242F6C6C009FF446 /* UIImage+Extension.m in Sources */,
 				9400FABB242F6C6C009FF446 /* IAFExamVC.m in Sources */,
+				9400FAE924311AE2009FF446 /* IAFSearchVC.m in Sources */,
+				9400FAE2242F85D7009FF446 /* IAFFloatView.m in Sources */,
 				9400FAD6242F6C6C009FF446 /* IAFTabView.m in Sources */,
 				9400FAD7242F6C6C009FF446 /* IAFTabContentView.m in Sources */,
 				9400FABD242F6C6C009FF446 /* IAFPhotoVC.m in Sources */,

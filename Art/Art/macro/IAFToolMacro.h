@@ -13,5 +13,6 @@
 #import "UIFont+Extension.h"
 #import "UIImage+Extension.h"
 #import "NSDictionary+Accessors.h"
+#import "UIView+Frame.h"
 
 #endif /* IAFToolMacro_h */
