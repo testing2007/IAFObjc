@@ -10,9 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^IAFRemoveHistoryBlockType)(void);
+
+
 @interface IAFSearchCCell : UICollectionViewCell
 
 - (void)setTexts:(NSArray*)arrText;
+
+@property (nonatomic, copy) IAFRemoveHistoryBlockType removeHistoryBlock;
 
 @end
 

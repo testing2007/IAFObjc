@@ -77,6 +77,11 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IAFSearchCCell *cell = (IAFSearchCCell*)[collectionView dequeueReusableCellWithReuseIdentifier:IAFSearchCCell.description forIndexPath:indexPath];
 
+    cell.removeHistoryBlock = ^{
+        [self.historySearchArr removeAllObjects];
+        [self.collectionView reloadData];
+    };
+    
     if(indexPath.row == 0 && self.historySearchArr.count > 0) {
         [cell setTexts:self.historySearchArr];
     }

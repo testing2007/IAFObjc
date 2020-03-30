@@ -75,7 +75,10 @@
 }
 
 - (void)onDeleteHistory:(UIButton*)sender {
-    [self.floatView removeFloatData];
+//    [self.floatView removeFloatData];
+    if(self.removeHistoryBlock) {
+        self.removeHistoryBlock();
+    }
 }
 
 - (IAFFloatView *)floatView {
