@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^IAFSwitchOpenBlockType)(BOOL isOpen);
+
 @interface IAFFloatView : UIView
 
 ///顺序：top, left, bottom, right
@@ -25,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///最大显示函数, 默认 0 表示没有限制
 @property (nonatomic, assign) NSInteger maxShowLines;
 
+@property (nonatomic, copy) IAFSwitchOpenBlockType  switchOpenBlock;
+
+///清除数据(不包含内部切换按钮)
+-(void)removeFloatData;
 
 @end
 

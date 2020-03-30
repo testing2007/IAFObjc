@@ -13,7 +13,6 @@
 @interface IAFFloatView ()
 @property (nonatomic, strong) UIButton  *switchBtn;
 @property (nonatomic, assign) NSInteger  maxAllowableShowIndex;
-
 @end
 
 @implementation IAFFloatView
@@ -33,7 +32,7 @@
     self.maxShowLines = 0;
     self.itemMaxWidth = 100;
     self.maxAllowableShowIndex = 0;
-    
+        
     [self addSubview:self.switchBtn];
 }
 
@@ -50,24 +49,40 @@
     return _switchBtn;
 }
 
+-(void)removeFloatData {
+    for (UIView *subview in self.subviews) {
+        if(subview.tag == K_SWITCH_TAG_BTN) {
+            continue;
+        }
+        [subview removeFromSuperview];
+    }
+}
+
 - (void)onSwitchBtn:(UIButton*)sender {
     _switchBtn.selected = !_switchBtn.selected;
     if(_switchBtn.selected) {
         [_switchBtn setTitle:@"关" forState:UIControlStateNormal];
+        [self sizeToFit];
+        if(_switchOpenBlock) {
+            self.switchOpenBlock(true);
+        }
     } else {
         [_switchBtn setTitle:@"开" forState:UIControlStateNormal];
+        [self sizeToFit];
+        if(_switchOpenBlock) {
+            self.switchOpenBlock(false);
+        }
     }
-    [self sizeToFit];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
     return [self layoutSubviewForSize:size];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    [self layoutSubviewForSize:self.bounds.size];
-}
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    [self layoutSubviewForSize:self.bounds.size];
+//}
 
 - (CGSize)layoutSubviewForSize:(CGSize)boundSize {
     
@@ -151,7 +166,7 @@
 }
 
 - (BOOL)isNeedHiddenItemWithItemIndex:(NSInteger)itemIndex {
-    if(self.maxShowLines != 0 && !self.switchBtn.isSelected && itemIndex>self.maxAllowableShowIndex) {
+    if(self.maxShowLines != 0 && !self.switchBtn.hidden && !self.switchBtn.isSelected && itemIndex>self.maxAllowableShowIndex) {
         return true;
     } else {
         return false;

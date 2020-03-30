@@ -11,6 +11,9 @@
 
 @interface IAFSearchCCell ()
 
+@property (nonatomic, strong) UILabel  *titleLabel;
+@property (nonatomic, strong) UIButton  *delBtn;
+
 @property (nonatomic, strong) IAFFloatView  *floatView;
 
 @end
@@ -27,13 +30,52 @@
 }
 
 - (void)installUI {
+    self.backgroundColor = [UIColor randomColor];
+
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.delBtn];
     [self.contentView addSubview:self.floatView];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(0);
+        make.top.offset(0);
+    }];
+    [self.delBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(0);
+        make.top.offset(0);
+    }];
+    [self.floatView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.offset(0);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
+        make.bottom.offset(0);
+    }];
+    [self layoutIfNeeded]; //这个很重要
 }
 
--(void)tapAction:(UITapGestureRecognizer *)tap
-{
-    NSLog(@"==============tapAction");
 
+- (UILabel*)titleLabel {
+    if(_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
+        _titleLabel.text = @"历史搜索";
+        _titleLabel.font = [UIFont bxg_fontMediumWithSize:15];
+        _titleLabel.textColor = [UIColor colorWithHex:0x000000];
+    }
+    return _titleLabel;
+}
+
+- (UIButton *)delBtn {
+    if(_delBtn == nil) {
+        _delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
+        _delBtn.titleLabel.font = [UIFont bxg_fontRegularWithSize:14];
+        [_delBtn addTarget:self action:@selector(onDeleteHistory:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _delBtn;
+}
+
+- (void)onDeleteHistory:(UIButton*)sender {
+    [self.floatView removeFloatData];
 }
 
 - (IAFFloatView *)floatView {
@@ -43,16 +85,19 @@
         _floatView.padding = UIEdgeInsetsMake(5, 5, 5, 5);
         _floatView.itemMaxWidth = 80;
         _floatView.maxShowLines = 2;
-        [_floatView setFrame:CGRectMake(0, 0, K_SCREEN_WIDTH, 20)];
+        
+        Weak(weakSelf);
+        _floatView.switchOpenBlock = ^(BOOL isOpen) {
+            NSLog(@"%@", weakSelf.floatView);
+            [weakSelf setSize:CGSizeMake(weakSelf.bounds.size.width, weakSelf.floatView.bottom)];
+        };
     }
     return _floatView;
 }
 
 - (void)setTexts:(NSArray*)arrText {
     
-//    for (UIView *subview in self.floatView.subviews) {
-//        [subview removeFromSuperview];
-//    }
+    [self.floatView removeFloatData];
     
     for(int i=0; i<arrText.count; ++i) {
         UILabel *label = [[UILabel alloc] init];
@@ -72,8 +117,11 @@
     }
 
     [self.floatView sizeToFit];
-    //必须将这个 floatView新的值， 设置给 UICollectionViewCell, 否则他的contentSize是一个很小的值。
-    [self setSize:self.floatView.size];
+    [self setSize:CGSizeMake(self.bounds.size.width, self.floatView.bottom)];
+}
+
+-(void)onTapLabel:(NSObject*)ges {
+    NSLog(@"onTapLabel");
 }
 
 
