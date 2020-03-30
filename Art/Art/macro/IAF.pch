@@ -17,6 +17,6 @@
 #import "IAFDeviceMacro.h"
 #import "IAFToolMacro.h"
 #import "IAFOpenSourceMacro.h"
-#import "IAFWrapperMacro.h"
+#import "IAFManagerMacro.h"
 
 #endif /* Beautifal_pch */

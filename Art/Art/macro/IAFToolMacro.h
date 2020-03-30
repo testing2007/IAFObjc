@@ -15,4 +15,9 @@
 #import "NSDictionary+Accessors.h"
 #import "UIView+Frame.h"
 
+
+
+
+#import "IAFRefreshTool.h"
+
 #endif /* IAFToolMacro_h */

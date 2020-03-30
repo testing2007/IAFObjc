@@ -1,13 +1,14 @@
 //
-//  IAFWrapperMacro.h
+//  IAFManagerMacro.h
 //  Beautifal
 //
 //  Created by ZhiQiang wei on 2020/3/27.
 //  Copyright © 2020 ZhiQiang wei. All rights reserved.
 //
 
-#ifndef IAFWrapperMacro_h
-#define IAFWrapperMacro_h
+#ifndef IAFManagerMacro_h
+#define IAFManagerMacro_h
 
+//
 
-#endif /* IAFWrapperMacro_h */
+#endif /* IAFManagerMacro_h */

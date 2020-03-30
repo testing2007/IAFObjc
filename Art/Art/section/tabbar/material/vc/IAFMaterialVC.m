@@ -54,7 +54,7 @@
 
 - (IAFTabView*)tabView {
     if(_tabView == nil) {
-        NSArray  *tabItems = @[self.homeVC, self.photoVC, self.worksVC, self.teachVC, self.examVC, self.libraryVC, self.videoVC, self.liveVC];
+        NSArray  *tabItems = @[self.homeVC, self.videoVC, self.photoVC, self.worksVC, self.teachVC, self.examVC, self.libraryVC, self.liveVC];
         _tabView = [[IAFTabView alloc] initWithTabItems:tabItems tabHeaderHeight:60];
     }
     return _tabView;

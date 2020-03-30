@@ -13,5 +13,6 @@
 #import <Masonry/Masonry.h>
 #import <YYModel/YYModel.h>
 #import <SDWebImage/SDWebImage.h>
+#import <MJRefresh/MJRefresh.h>
 
 #endif /* IAFOpenSourceMacro_h */

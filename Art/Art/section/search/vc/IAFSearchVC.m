@@ -89,9 +89,4 @@
     return cell;
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    IAFSearchCCell *cell = (IAFSearchCCell*)[collectionView dequeueReusableCellWithReuseIdentifier:IAFSearchCCell.description forIndexPath:indexPath];
-//    return CGSizeMake(K_SCREEN_WIDTH, cell.bounds.size.height);
-//}
-
 @end

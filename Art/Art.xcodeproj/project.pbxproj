@@ -57,6 +57,10 @@
 		9400FAE2242F85D7009FF446 /* IAFFloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAE1242F85D7009FF446 /* IAFFloatView.m */; };
 		9400FAE924311AE2009FF446 /* IAFSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAE824311AE2009FF446 /* IAFSearchVC.m */; };
 		9400FAED24311C7B009FF446 /* IAFSearchCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAEC24311C7B009FF446 /* IAFSearchCCell.m */; };
+		9400FAF724323BBA009FF446 /* IAFRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FAF624323BBA009FF446 /* IAFRefreshHeader.m */; };
+		9400FCF724323CBD009FF446 /* res.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9400FCF624323CBD009FF446 /* res.xcassets */; };
+		9400FCFB24323DA4009FF446 /* IAFRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FCFA24323DA4009FF446 /* IAFRefreshTool.m */; };
+		9400FCFE24324372009FF446 /* IAFRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FCFD24324372009FF446 /* IAFRefreshFooter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,7 +102,7 @@
 		9400FA68242F6C6C009FF446 /* IAFTeachVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAFTeachVC.m; sourceTree = "<group>"; };
 		9400FA6B242F6C6C009FF446 /* IAFPhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFPhotoVC.h; sourceTree = "<group>"; };
 		9400FA6C242F6C6C009FF446 /* IAFPhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAFPhotoVC.m; sourceTree = "<group>"; };
-		9400FA6E242F6C6C009FF446 /* IAFWrapperMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFWrapperMacro.h; sourceTree = "<group>"; };
+		9400FA6E242F6C6C009FF446 /* IAFManagerMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFManagerMacro.h; sourceTree = "<group>"; };
 		9400FA6F242F6C6C009FF446 /* IAFDeviceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFDeviceMacro.h; sourceTree = "<group>"; };
 		9400FA70242F6C6C009FF446 /* IAFOpenSourceMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFOpenSourceMacro.h; sourceTree = "<group>"; };
 		9400FA71242F6C6C009FF446 /* IAFToolMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAFToolMacro.h; sourceTree = "<group>"; };
@@ -164,6 +168,13 @@
 		9400FAE824311AE2009FF446 /* IAFSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFSearchVC.m; sourceTree = "<group>"; };
 		9400FAEB24311C7B009FF446 /* IAFSearchCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFSearchCCell.h; sourceTree = "<group>"; };
 		9400FAEC24311C7B009FF446 /* IAFSearchCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFSearchCCell.m; sourceTree = "<group>"; };
+		9400FAF524323BBA009FF446 /* IAFRefreshHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFRefreshHeader.h; sourceTree = "<group>"; };
+		9400FAF624323BBA009FF446 /* IAFRefreshHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFRefreshHeader.m; sourceTree = "<group>"; };
+		9400FCF624323CBD009FF446 /* res.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = res.xcassets; sourceTree = "<group>"; };
+		9400FCF924323DA4009FF446 /* IAFRefreshTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFRefreshTool.h; sourceTree = "<group>"; };
+		9400FCFA24323DA4009FF446 /* IAFRefreshTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFRefreshTool.m; sourceTree = "<group>"; };
+		9400FCFC24324372009FF446 /* IAFRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFRefreshFooter.h; sourceTree = "<group>"; };
+		9400FCFD24324372009FF446 /* IAFRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFRefreshFooter.m; sourceTree = "<group>"; };
 		9995EE103FA403AD04492C9C /* Pods-Art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.release.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.release.xcconfig"; sourceTree = "<group>"; };
 		B7489FADD10459D169A62E32 /* Pods_Art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -201,6 +212,7 @@
 		9400FA0A242F6C1C009FF446 /* Art */ = {
 			isa = PBXGroup;
 			children = (
+				9400FAF324323B40009FF446 /* tools */,
 				9400FA72242F6C6C009FF446 /* common */,
 				9400FA6D242F6C6C009FF446 /* macro */,
 				9400FA24242F6C6C009FF446 /* section */,
@@ -218,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				9400FAE424311AA7009FF446 /* search */,
-				9400FA25242F6C6C009FF446 /* tools */,
 				9400FA26242F6C6C009FF446 /* prepare */,
 				9400FA27242F6C6C009FF446 /* tabbar */,
 				9400FA44242F6C6C009FF446 /* baseUI */,
@@ -226,13 +237,6 @@
 				9400FA4C242F6C6C009FF446 /* material */,
 			);
 			path = section;
-			sourceTree = "<group>";
-		};
-		9400FA25242F6C6C009FF446 /* tools */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = tools;
 			sourceTree = "<group>";
 		};
 		9400FA26242F6C6C009FF446 /* prepare */ = {
@@ -592,7 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				9400FADA242F6E9F009FF446 /* IAF.pch */,
-				9400FA6E242F6C6C009FF446 /* IAFWrapperMacro.h */,
+				9400FA6E242F6C6C009FF446 /* IAFManagerMacro.h */,
 				9400FA6F242F6C6C009FF446 /* IAFDeviceMacro.h */,
 				9400FA70242F6C6C009FF446 /* IAFOpenSourceMacro.h */,
 				9400FA71242F6C6C009FF446 /* IAFToolMacro.h */,
@@ -603,6 +607,7 @@
 		9400FA72242F6C6C009FF446 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				9400FAF12431D399009FF446 /* searchBar */,
 				9400FADF242F85BA009FF446 /* floatView */,
 				9400FA73242F6C6C009FF446 /* category */,
 				9400FAA0242F6C6C009FF446 /* tab */,
@@ -715,6 +720,35 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		9400FAF12431D399009FF446 /* searchBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = searchBar;
+			sourceTree = "<group>";
+		};
+		9400FAF324323B40009FF446 /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				9400FAF424323B4C009FF446 /* refresh */,
+			);
+			path = tools;
+			sourceTree = "<group>";
+		};
+		9400FAF424323B4C009FF446 /* refresh */ = {
+			isa = PBXGroup;
+			children = (
+				9400FAF524323BBA009FF446 /* IAFRefreshHeader.h */,
+				9400FAF624323BBA009FF446 /* IAFRefreshHeader.m */,
+				9400FCFC24324372009FF446 /* IAFRefreshFooter.h */,
+				9400FCFD24324372009FF446 /* IAFRefreshFooter.m */,
+				9400FCF624323CBD009FF446 /* res.xcassets */,
+				9400FCF924323DA4009FF446 /* IAFRefreshTool.h */,
+				9400FCFA24323DA4009FF446 /* IAFRefreshTool.m */,
+			);
+			path = refresh;
+			sourceTree = "<group>";
+		};
 		DE74838DD1224E642F3979AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -792,6 +826,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9400FA1B242F6C1E009FF446 /* LaunchScreen.storyboard in Resources */,
+				9400FCF724323CBD009FF446 /* res.xcassets in Resources */,
 				9400FA18242F6C1E009FF446 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,6 +885,7 @@
 				9400FAC2242F6C6C009FF446 /* UIView+Frame.m in Sources */,
 				9400FABE242F6C6C009FF446 /* UIView+Pop.m in Sources */,
 				9400FAB3242F6C6C009FF446 /* IAFBaseNavigatorController.m in Sources */,
+				9400FAF724323BBA009FF446 /* IAFRefreshHeader.m in Sources */,
 				9400FAB9242F6C6C009FF446 /* IAFWorksVC.m in Sources */,
 				9400FAC4242F6C6C009FF446 /* NSDictionary+Accessors.m in Sources */,
 				9400FAED24311C7B009FF446 /* IAFSearchCCell.m in Sources */,
@@ -869,6 +905,7 @@
 				9400FAD4242F6C6C009FF446 /* IAFTabHeaderCCell.m in Sources */,
 				9400FAB8242F6C6C009FF446 /* IAFLibraryVC.m in Sources */,
 				9400FAB2242F6C6C009FF446 /* IAFMaterialVC.m in Sources */,
+				9400FCFE24324372009FF446 /* IAFRefreshFooter.m in Sources */,
 				9400FAAF242F6C6C009FF446 /* IAFDiscoverVC.m in Sources */,
 				9400FAC1242F6C6C009FF446 /* UIBarButtonItem+Common.m in Sources */,
 				9400FAD3242F6C6C009FF446 /* UIView+SuperVC.m in Sources */,
@@ -878,6 +915,7 @@
 				9400FAC3242F6C6C009FF446 /* UIImage+Extension.m in Sources */,
 				9400FABB242F6C6C009FF446 /* IAFExamVC.m in Sources */,
 				9400FAE924311AE2009FF446 /* IAFSearchVC.m in Sources */,
+				9400FCFB24323DA4009FF446 /* IAFRefreshTool.m in Sources */,
 				9400FAE2242F85D7009FF446 /* IAFFloatView.m in Sources */,
 				9400FAD6242F6C6C009FF446 /* IAFTabView.m in Sources */,
 				9400FAD7242F6C6C009FF446 /* IAFTabContentView.m in Sources */,
