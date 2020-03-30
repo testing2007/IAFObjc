@@ -7,8 +7,8 @@
 //
 
 #import "IAFBaseNavigatorController.h"
-//,
-@interface IAFBaseNavigatorController ()<UINavigationControllerDelegate, UIGestureRecognizerDelegate>
+
+@interface IAFBaseNavigatorController ()<UIGestureRecognizerDelegate>
 
 @end
 
@@ -18,8 +18,6 @@
     
     self = [super init];
     if (self) {
-        
-        self.delegate = self;
     }
     
     return self;
@@ -29,7 +27,6 @@
     
     self = [super initWithRootViewController:rootViewController];
     if (self) {
-        self.delegate = self;
     }
     
     return self;
@@ -39,7 +36,6 @@
 
     [super viewDidLoad];
 
-//    self.delegate = self;
     self.interactivePopGestureRecognizer.delegate = self;
     // Do any additional setup after loading the view.
     
@@ -53,29 +49,20 @@
     [self.navigationBar setBackIndicatorTransitionMaskImage:[[UIImage imageNamed:@"返回-白"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 }
 
-#pragma mark - UINavigationControllerDelegate
-
-// 隐藏导航栏
-- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    // 判断要显示的控制器是否是自己
-    BOOL isShowHomePage = [viewController isKindOfClass:[viewController class]];
-
-    [self.navigationController setNavigationBarHidden:isShowHomePage animated:YES];
-}
-
 #pragma mark -  UIGestureRecognizerDelegate
-// called before touchesBegan:withEvent: is called on the gesture recognizer for a new touch. return NO to prevent the gesture recognizer from seeing this touch
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.childViewControllers.count > 1;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    [super pushViewController:viewController animated:animated];
 
     if(self.childViewControllers.count >= 1) {
         viewController.hidesBottomBarWhenPushed = true;
-        self.navigationBarHidden = false;
+//        self.navigationBarHidden = false;
     }
+    
+    //一定要放在 viewController.hidesBottomBarWhenPushed 后面再调用 [super push**]
+    [super pushViewController:viewController animated:animated];
 }
 
 @end
