@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)setTitle:(NSString*)title isSelected:(BOOL)isSelected;
 
+@property (nonatomic, strong, readonly) UILabel  *titleLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

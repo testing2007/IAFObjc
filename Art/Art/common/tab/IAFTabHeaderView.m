@@ -11,7 +11,7 @@
 
 #define K_THRESHOLD_TAB_SIZE 5
 
-@interface IAFTabHeaderView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface IAFTabHeaderView ()<UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView  *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout  *flowLayout;
@@ -20,8 +20,6 @@
 @property (nonatomic, weak) IAFTabView *tabView;
 
 @property (nonatomic, copy) DidChangeIndexBlockType  didChangeIndexBlock;
-
-@property (nonatomic, assign) CGSize itemSize;
 
 @property (nonatomic, assign) NSInteger  currentIndex;
 
@@ -56,9 +54,6 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
-        
-        layout.itemSize = self.itemSize;
-        
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _flowLayout = layout;
@@ -77,21 +72,8 @@
         _collectionView.showsHorizontalScrollIndicator = false;
 
         
-//        Weak(weakSelf);
-//        [_collectionView bxg_setHeaderRefreshBlock:^{
-//            [weakSelf loadDataWithIsRefresh:true];
-//        }];
     }
     return _collectionView;
-}
-
-- (CGSize)itemSize {
-    if(CGSizeEqualToSize(_itemSize, CGSizeZero)) {
-        NSInteger count = self.tabItems.count >K_THRESHOLD_TAB_SIZE ? K_THRESHOLD_TAB_SIZE : self.tabItems.count;
-        _itemSize.width = K_SCREEN_WIDTH/count;
-        _itemSize.height = 80;
-    }
-    return _itemSize;
 }
 
 - (void)setCurrentIndex:(NSInteger)newIndex {
@@ -101,46 +83,10 @@
     if(self.didChangeIndexBlock) {
         self.didChangeIndexBlock(newIndex);
     }
-    [self scrollToNewIndex:newIndex oldIndex:_currentIndex];
+    NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForRow:newIndex inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:destinationIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];
     _currentIndex = newIndex;
     [self.collectionView reloadData];
-}
-
-- (void)scrollToNewIndex:(NSInteger)newIndex oldIndex:(NSInteger)oldIndex {
-    if(newIndex == oldIndex) {
-        return ;
-    }
-    
-    if(self.tabItems.count>K_THRESHOLD_TAB_SIZE) {
-
-        CGFloat offsetX = 0;
-        BOOL isTowardToRight = newIndex-oldIndex;
-        NSInteger maxAllowableOffseXCount = self.tabItems.count-K_THRESHOLD_TAB_SIZE;
-        if(newIndex<K_THRESHOLD_TAB_SIZE/2) {
-            
-            //做不处理操作
-            
-        } else if(newIndex<maxAllowableOffseXCount) {
-            
-            NSInteger startIndex = K_THRESHOLD_TAB_SIZE%2==0 ? K_THRESHOLD_TAB_SIZE/2 : K_THRESHOLD_TAB_SIZE/2+1;
-            offsetX = (newIndex-startIndex+1)*self.itemSize.width;
-            
-        } else {
-            CGFloat maxOffsetX = maxAllowableOffseXCount * self.itemSize.width;
-            offsetX = maxOffsetX;
-        }
-        
-        [self.collectionView setContentOffset:CGPointMake( offsetX<0 ? 0 : offsetX, 0) animated:false];
-
-    } else {
-        
-        if(newIndex>K_THRESHOLD_TAB_SIZE-1) {
-            [self.collectionView setContentOffset:CGPointMake(((newIndex-(K_THRESHOLD_TAB_SIZE-1)) *self.itemSize.width), 0) animated:false];
-        } else {
-            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:false];
-        }
-        
-    }
 }
 
 #pragma mark -- UICollectionViewDataSource
@@ -162,10 +108,15 @@
     self.currentIndex = indexPath.row;
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    NSInteger index = (scrollView.contentOffset.x + (self.itemSize.width/2)) / self.itemSize.width;
-////    NSLog(@"scrollView.contentOffset.x=%lf", scrollView.contentOffset.x);
-//    self.currentIndex = index;
-//}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    IAFTabHeaderCCell *cell = (IAFTabHeaderCCell*)([self.collectionView dequeueReusableCellWithReuseIdentifier:IAFTabHeaderCCell.description forIndexPath:indexPath]);
+
+    CGSize itemSize = CGSizeZero;
+    NSInteger count = self.tabItems.count >K_THRESHOLD_TAB_SIZE ? K_THRESHOLD_TAB_SIZE : self.tabItems.count;
+    itemSize.width = K_SCREEN_WIDTH/count;
+    itemSize.height = self.superview.height;
+    return itemSize;
+}
 
 @end

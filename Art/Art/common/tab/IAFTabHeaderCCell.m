@@ -11,7 +11,7 @@
 
 @interface IAFTabHeaderCCell ()
 
-@property (nonatomic, strong) UILabel  *titleLabel;
+@property (nonatomic, strong, readwrite) UILabel  *titleLabel;
 @property (nonatomic, assign) BOOL  selected;
 
 @end
@@ -63,5 +63,8 @@
     self.titleLabel.text = title;
 }
 
+-(NSString*)getTitle {
+    return self.titleLabel.text;
+}
 
 @end
