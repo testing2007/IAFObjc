@@ -19,5 +19,6 @@
 
 
 #import "IAFRefreshTool.h"
+#import "IAFMaskView.h"
 
 #endif /* IAFToolMacro_h */

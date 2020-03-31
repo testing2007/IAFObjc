@@ -61,6 +61,8 @@
 		9400FCF724323CBD009FF446 /* res.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9400FCF624323CBD009FF446 /* res.xcassets */; };
 		9400FCFB24323DA4009FF446 /* IAFRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FCFA24323DA4009FF446 /* IAFRefreshTool.m */; };
 		9400FCFE24324372009FF446 /* IAFRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400FCFD24324372009FF446 /* IAFRefreshFooter.m */; };
+		94FD49242432DF80002C9945 /* IAFMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94FD49232432DF80002C9945 /* IAFMaskView.m */; };
+		94FD49262432EE9F002C9945 /* empty.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94FD49252432EE9F002C9945 /* empty.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -175,6 +177,9 @@
 		9400FCFA24323DA4009FF446 /* IAFRefreshTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFRefreshTool.m; sourceTree = "<group>"; };
 		9400FCFC24324372009FF446 /* IAFRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFRefreshFooter.h; sourceTree = "<group>"; };
 		9400FCFD24324372009FF446 /* IAFRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFRefreshFooter.m; sourceTree = "<group>"; };
+		94FD49222432DF80002C9945 /* IAFMaskView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IAFMaskView.h; sourceTree = "<group>"; };
+		94FD49232432DF80002C9945 /* IAFMaskView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAFMaskView.m; sourceTree = "<group>"; };
+		94FD49252432EE9F002C9945 /* empty.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = empty.xcassets; sourceTree = "<group>"; };
 		9995EE103FA403AD04492C9C /* Pods-Art.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Art.release.xcconfig"; path = "Target Support Files/Pods-Art/Pods-Art.release.xcconfig"; sourceTree = "<group>"; };
 		B7489FADD10459D169A62E32 /* Pods_Art.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Art.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -607,6 +612,8 @@
 		9400FA72242F6C6C009FF446 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				94FD49212432DF3C002C9945 /* mask */,
+				94FD49202432DF06002C9945 /* toast */,
 				9400FAF12431D399009FF446 /* searchBar */,
 				9400FADF242F85BA009FF446 /* floatView */,
 				9400FA73242F6C6C009FF446 /* category */,
@@ -749,6 +756,23 @@
 			path = refresh;
 			sourceTree = "<group>";
 		};
+		94FD49202432DF06002C9945 /* toast */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = toast;
+			sourceTree = "<group>";
+		};
+		94FD49212432DF3C002C9945 /* mask */ = {
+			isa = PBXGroup;
+			children = (
+				94FD49222432DF80002C9945 /* IAFMaskView.h */,
+				94FD49232432DF80002C9945 /* IAFMaskView.m */,
+				94FD49252432EE9F002C9945 /* empty.xcassets */,
+			);
+			path = mask;
+			sourceTree = "<group>";
+		};
 		DE74838DD1224E642F3979AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,6 +850,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9400FA1B242F6C1E009FF446 /* LaunchScreen.storyboard in Resources */,
+				94FD49262432EE9F002C9945 /* empty.xcassets in Resources */,
 				9400FCF724323CBD009FF446 /* res.xcassets in Resources */,
 				9400FA18242F6C1E009FF446 /* Assets.xcassets in Resources */,
 			);
@@ -901,6 +926,7 @@
 				9400FAD2242F6C6C009FF446 /* UIView+Extension.m in Sources */,
 				9400FAC8242F6C6C009FF446 /* UIFont+Extension.m in Sources */,
 				9400FABC242F6C6C009FF446 /* IAFTeachVC.m in Sources */,
+				94FD49242432DF80002C9945 /* IAFMaskView.m in Sources */,
 				9400FAC0242F6C6C009FF446 /* UILabel+Extension.m in Sources */,
 				9400FAD4242F6C6C009FF446 /* IAFTabHeaderCCell.m in Sources */,
 				9400FAB8242F6C6C009FF446 /* IAFLibraryVC.m in Sources */,

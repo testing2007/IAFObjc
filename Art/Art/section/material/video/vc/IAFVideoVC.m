@@ -62,8 +62,12 @@
 
 - (void)pullDownLoadData {
     Weak(weakSelf);
+    [self.view removeMaskView];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2*NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [weakSelf.tableView reloadData];
+        [self.view installMaskView:IAFButtonMaskViewTypeNoLogin buttonBlock:^{
+            NSLog(@"come back");
+        }];
         
         [weakSelf.tableView iaf_endHeaderRefresh];
     });
