@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IAFHomeVC : IAFBaseVC
 
+@property (nonatomic, copy) void (^upScrollBlock)(void);
+@property (nonatomic, copy) void (^downScrollBlock)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

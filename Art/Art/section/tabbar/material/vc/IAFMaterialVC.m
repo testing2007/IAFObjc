@@ -8,6 +8,8 @@
 
 #import "IAFMaterialVC.h"
 
+#import "IAFSearchVC.h"
+
 #import "IAFTabView.h"
 #import "IAFHomeVC.h"
 #import "IAFPhotoVC.h"
@@ -18,7 +20,9 @@
 #import "IAFVideoVC.h"
 #import "IAFLiveVC.h"
 
+
 @interface IAFMaterialVC ()
+
 @property (nonatomic, strong) IAFTabView    *tabView;
 
 @property (nonatomic, strong) IAFHomeVC     *homeVC;
@@ -44,12 +48,30 @@
 }
 
 - (void)installUI {
+    
+    [self installNavigator];
+    
     [self.view addSubview:self.tabView];
     [self.tabView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(K_NAVIGATION_BAR_OFFSET);
         make.left.right.offset(0);
         make.bottom.offset( -(K_BOTTOM_SAFE_OFFSET+K_BOTTOM_TAB_BAR_HEIGHT) );
     }];
+}
+
+- (void)installNavigator {
+    UIButton *navigatorBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [navigatorBtn setTitle:@"跳转至搜索页面" forState:UIControlStateNormal];
+    navigatorBtn.titleLabel.font = [UIFont bxg_fontRegularWithSize:14];
+    [navigatorBtn addTarget:self action:@selector(onGotoSearchPage:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithCustomView:navigatorBtn];
+    self.navigationItem.titleView = navigatorBtn;
+}
+
+- (void)onGotoSearchPage:(NSObject*)sender {
+    IAFSearchVC *vc = [[IAFSearchVC alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (IAFTabView*)tabView {
@@ -63,6 +85,25 @@
 - (IAFHomeVC*)homeVC {
     if(_homeVC == nil) {
         _homeVC = [[IAFHomeVC alloc] init];
+        Weak(weakSelf)
+        _homeVC.upScrollBlock = ^{
+            [UIView animateWithDuration:0.1 animations:^{
+                [weakSelf.tabView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.top.offset(K_STATUS_BAR_OFFSET);
+                }];
+                [super.navigationController setNavigationBarHidden:YES animated:TRUE];
+            }];
+        };
+        _homeVC.downScrollBlock = ^{
+            [UIView animateWithDuration:0.1 animations:^{
+                [weakSelf.tabView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.top.offset(K_NAVIGATION_BAR_OFFSET);
+                }];
+                [super.navigationController setNavigationBarHidden:NO animated:TRUE];
+
+            }];
+        };
+        
         [self addChildViewController:_homeVC]; //如果不添加， IAFHomeVC 他要是调用 self.navigationController 就是空的
     }
     return _homeVC;

@@ -8,11 +8,12 @@
 
 #import "IAFHomeVC.h"
 #import "IAFTabViewDelegate.h"
-#import "IAFSearchVC.h"
 
-@interface IAFHomeVC ()<IAFTabViewDelegate>
-@property (nonatomic, strong) UIButton  *searchBtn;
-@property (nonatomic, strong) UILabel  *testLabel;
+@interface IAFHomeVC ()<IAFTabViewDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView  *tableView;
+@property (nonatomic, assign) CGFloat  beginContentOffsetY;
+
 
 @end
 
@@ -40,59 +41,30 @@
     NSLog(@"%@--viewWillAppear", NSStringFromClass(self.class));
 }
 
-- (UIButton *)searchBtn {
-    
-    if(_searchBtn == nil) {
-        
-        _searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_searchBtn setTitle:@"searchVC" forState:UIControlStateNormal];
-        _searchBtn.titleLabel.font = [UIFont bxg_fontRegularWithSize:14];
-        [_searchBtn addTarget:self action:@selector(onSearchVC:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _searchBtn;
-}
-
--(UILabel*)testLabel {
-    if(_testLabel == nil) {
-        _testLabel = [[UILabel alloc] init];
-        _testLabel.text = @"testLabel";
-        _testLabel.textAlignment = NSTextAlignmentLeft;
-        _testLabel.font = [UIFont bxg_fontMediumWithSize:15];
-        _testLabel.textColor = [UIColor colorWithHex:0x999999];
-        _testLabel.backgroundColor = [UIColor randomColor];
-        _testLabel.layer.borderColor = [UIColor colorWithHex:0x880000].CGColor;
-        _testLabel.layer.masksToBounds = true;
-        _testLabel.layer.cornerRadius = 5;
-        _testLabel.userInteractionEnabled = true;
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapLabel:)];
-        [_testLabel addGestureRecognizer:tap];
-    }
-    return _testLabel;
-}
-
--(void)onTapLabel:(UIGestureRecognizer*)ges {
-    NSLog(@"%@ onTapLabel", NSStringFromClass([IAFHomeVC class]));
-}
-
-- (void)onSearchVC:(UIButton*)btn {
-    IAFSearchVC *vc = [[IAFSearchVC alloc] init];
-    [self.navigationController pushViewController:vc animated:true];
-}
-
 - (void)installUI {
-    [self.view addSubview:self.searchBtn];
-    [self.searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.offset(0);
-        make.width.height.equalTo(@(100));
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.offset(0);
     }];
-    [self.view addSubview:self.testLabel];
-    [self.testLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.searchBtn.mas_bottom).offset(10);
-        make.centerX.offset(0);
-        make.width.equalTo(@(100));
-        make.height.equalTo(@(80));
-    }];
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.estimatedRowHeight = 40;
+        _tableView.backgroundColor = [UIColor colorWithHex:0xf6f8fc];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:UITableViewCell.description];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        if (@available(iOS 11.0, *)) {
+            _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = FALSE;
+        }
+    }
+    return _tableView;
 }
 
 #pragma mark -- IAFTabViewDelegate
@@ -104,6 +76,50 @@
     return self.view;
 }
 
+#pragma mark -- UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 100;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:UITableViewCell.description forIndexPath:indexPath];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld", indexPath.row];
+    
+    return cell;
+}
+
+#pragma mark -- UIScrollViewDelegate
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    _beginContentOffsetY = scrollView.contentOffset.y;
+//}
+//
+//- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+//    if(_beginContentOffsetY<scrollView.contentOffset.y) {
+//        NSLog(@"--向上");
+//
+//        [super.navigationController setNavigationBarHidden:YES animated:TRUE];
+//    } else {
+//        NSLog(@"--向下");
+//
+//        [super.navigationController setNavigationBarHidden:NO animated:TRUE];
+//    }
+//}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    UIPanGestureRecognizer *ges = scrollView.panGestureRecognizer;
+    CGFloat velocity = [ges velocityInView:scrollView].y;
+    if(velocity < -5) {
+        //上滑
+        if(self.upScrollBlock) {
+            self.upScrollBlock();
+        }
+    } else if(velocity > 5) {
+        //下滑
+        if(self.downScrollBlock) {
+            self.downScrollBlock();
+        }
+    }
+}
 
 @end

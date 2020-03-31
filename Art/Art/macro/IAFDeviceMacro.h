@@ -9,6 +9,7 @@
 #ifndef IAFDeviceMacro_h
 #define IAFDeviceMacro_h
 
+//[UIDevice userInterfaceIdiom]
 #define K_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) || ([[UIDevice currentDevice].model isEqualToString:@"iPad"])
 #define K_IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define K_IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)

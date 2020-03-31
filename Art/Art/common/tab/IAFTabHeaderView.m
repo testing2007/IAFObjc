@@ -21,6 +21,8 @@
 
 @property (nonatomic, copy) DidChangeIndexBlockType  didChangeIndexBlock;
 
+@property (nonatomic, assign) CGSize itemSize;
+
 @property (nonatomic, assign) NSInteger  currentIndex;
 
 
@@ -71,9 +73,20 @@
         _collectionView.showsVerticalScrollIndicator = false;
         _collectionView.showsHorizontalScrollIndicator = false;
 
-        
+        if (@available(iOS 11.0, *)) {
+              _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+          }
     }
     return _collectionView;
+}
+
+- (CGSize)itemSize {
+    if(CGSizeEqualToSize(_itemSize, CGSizeZero)) {
+        NSInteger count = self.tabItems.count >K_THRESHOLD_TAB_SIZE ? K_THRESHOLD_TAB_SIZE : self.tabItems.count;
+        _itemSize.width = K_SCREEN_WIDTH/count;
+        _itemSize.height = self.superview.height;
+    }
+    return _itemSize;
 }
 
 - (void)setCurrentIndex:(NSInteger)newIndex {
@@ -83,10 +96,61 @@
     if(self.didChangeIndexBlock) {
         self.didChangeIndexBlock(newIndex);
     }
-    NSIndexPath *destinationIndexPath = [NSIndexPath indexPathForRow:newIndex inSection:0];
-    [self.collectionView scrollToItemAtIndexPath:destinationIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:true];
+    [self scrollToNewIndex:newIndex oldIndex:_currentIndex];
     _currentIndex = newIndex;
     [self.collectionView reloadData];
+}
+
+- (void)scrollToNewIndex:(NSInteger)newIndex oldIndex:(NSInteger)oldIndex {
+    if(newIndex == oldIndex) {
+        return ;
+    }
+    
+    if(self.tabItems.count>K_THRESHOLD_TAB_SIZE) {
+
+        NSInteger maxAllowableOffseX = (self.tabItems.count-K_THRESHOLD_TAB_SIZE)*self.itemSize.width;
+        BOOL isTowardToRight = newIndex-oldIndex;
+        
+        CGFloat curOffsetX =  self.collectionView.contentOffset.x;
+        CGFloat newPosX = newIndex*self.itemSize.width;
+        CGFloat newOffsetX = 0;
+        if(newPosX<=curOffsetX) {
+            //说明这个位置在左边界
+            if(isTowardToRight) {
+                newOffsetX = curOffsetX-(curOffsetX-newPosX-10);
+                [self.collectionView setContentOffset:CGPointMake( newOffsetX<0 ? 0 : newOffsetX, 0) animated:false];
+            } else {
+                //不应该出现这个情况，如果出现， 不处理
+            }
+        } else {
+            CGFloat distanceFromLeftX = newPosX-curOffsetX;
+            if(distanceFromLeftX+self.itemSize.width >= self.collectionView.bounds.size.width) {
+                //说明所选item在右边界上
+                if(isTowardToRight) {
+                    //向右
+                    CGFloat offsetX = curOffsetX+self.itemSize.width;
+                    if(offsetX<self.itemSize.width) {
+                        offsetX = self.itemSize.width;
+                    }
+                    newOffsetX = offsetX>maxAllowableOffseX ? maxAllowableOffseX : offsetX;
+                    [self.collectionView setContentOffset:CGPointMake( newOffsetX<0 ? 0 : newOffsetX, 0) animated:false];
+                } else {
+                    //向左， 不处理
+                }
+            } else {
+                //可视区域，不处理
+            }
+        }
+
+    } else {
+        
+        if(newIndex>K_THRESHOLD_TAB_SIZE-1) {
+            [self.collectionView setContentOffset:CGPointMake(((newIndex-(K_THRESHOLD_TAB_SIZE-1)) *self.itemSize.width), 0) animated:false];
+        } else {
+            [self.collectionView setContentOffset:CGPointMake(0, 0) animated:false];
+        }
+        
+    }
 }
 
 #pragma mark -- UICollectionViewDataSource
@@ -110,13 +174,9 @@
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IAFTabHeaderCCell *cell = (IAFTabHeaderCCell*)([self.collectionView dequeueReusableCellWithReuseIdentifier:IAFTabHeaderCCell.description forIndexPath:indexPath]);
+//    IAFTabHeaderCCell *cell = (IAFTabHeaderCCell*)([self.collectionView dequeueReusableCellWithReuseIdentifier:IAFTabHeaderCCell.description forIndexPath:indexPath]);
 
-    CGSize itemSize = CGSizeZero;
-    NSInteger count = self.tabItems.count >K_THRESHOLD_TAB_SIZE ? K_THRESHOLD_TAB_SIZE : self.tabItems.count;
-    itemSize.width = K_SCREEN_WIDTH/count;
-    itemSize.height = self.superview.height;
-    return itemSize;
+    return self.itemSize;
 }
 
 @end

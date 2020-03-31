@@ -40,9 +40,19 @@
         make.left.right.top.offset(0);
         make.height.equalTo(@(self.tabHeaderHeight));
     }];
+    
+    UIView *sepView = [[UIView alloc] init];
+    sepView.backgroundColor = [UIColor colorWithHex:0xF5F5F5];
+    [self addSubview:sepView];
+    [sepView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.offset(0);
+        make.top.equalTo(self.headerView.mas_bottom);
+        make.height.equalTo(@(8));
+    }];
+    
     [self addSubview:self.contentView];
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerView.mas_bottom).offset(0);
+        make.top.equalTo(sepView.mas_bottom).offset(0);
         make.left.right.offset(0);
         make.bottom.offset(0);
     }];
