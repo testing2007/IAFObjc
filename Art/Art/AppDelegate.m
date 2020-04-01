@@ -7,10 +7,10 @@
 //
 
 #import "AppDelegate.h"
-#import "section/mainTabbar/IAFMainTabBarVC.h"
+#import "section/mainTabbar/ARTMainTabBarVC.h"
 
 @interface AppDelegate ()
-@property (nonatomic, strong) IAFMainTabBarVC *mainTabBarVC;
+@property (nonatomic, strong) ARTMainTabBarVC *mainTabBarVC;
 @end
 
 @implementation AppDelegate
@@ -21,7 +21,7 @@
    
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     
-    self.mainTabBarVC = [[IAFMainTabBarVC alloc] init];
+    self.mainTabBarVC = [[ARTMainTabBarVC alloc] init];
     
     self.window.rootViewController = self.mainTabBarVC;
     

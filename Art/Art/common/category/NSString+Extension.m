@@ -3,7 +3,7 @@
 //  Boxuegu
 //
 //  Created by apple on 2017/7/8.
-//  Copyright © 2017年 itcast. All rights reserved.
+//  Copyright © 2017年 ZhiQiang wei All rights reserved.
 //
 
 #import "NSString+Extension.h"

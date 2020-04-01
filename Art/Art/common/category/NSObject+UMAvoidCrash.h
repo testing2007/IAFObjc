@@ -3,7 +3,7 @@
 //  Boxuegu
 //
 //  Created by ZhiQiang wei on 2020/2/12.
-//  Copyright © 2020 itcast. All rights reserved.
+//  Copyright © 2020 ZhiQiang wei All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

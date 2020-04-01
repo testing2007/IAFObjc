@@ -3,7 +3,7 @@
 //  Boxuegu
 //
 //  Created by apple on 2017/10/30.
-//  Copyright © 2017年 itcast. All rights reserved.
+//  Copyright © 2017年 ZhiQiang wei All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -1,6 +1,6 @@
 //
 //  IAFTabHeaderView.m
-//  Beautifal
+//  ART
 //
 //  Created by ZhiQiang wei on 2020/3/27.
 //  Copyright © 2020 ZhiQiang wei. All rights reserved.
@@ -83,7 +83,7 @@
 - (CGSize)itemSize {
     if(CGSizeEqualToSize(_itemSize, CGSizeZero)) {
         NSInteger count = self.tabItems.count >K_THRESHOLD_TAB_SIZE ? K_THRESHOLD_TAB_SIZE : self.tabItems.count;
-        _itemSize.width = K_SCREEN_WIDTH/count;
+        _itemSize.width = (NSInteger)(K_SCREEN_WIDTH/count);
         _itemSize.height = self.superview.height;
     }
     return _itemSize;
@@ -113,7 +113,7 @@
         
         CGFloat curOffsetX =  self.collectionView.contentOffset.x;
         CGFloat newPosX = newIndex*self.itemSize.width;
-        CGFloat newOffsetX = 0;
+        NSInteger newOffsetX = 0;
         if(newPosX<=curOffsetX) {
             //说明这个位置在左边界
             if(isTowardToRight) {
@@ -145,7 +145,8 @@
     } else {
         
         if(newIndex>K_THRESHOLD_TAB_SIZE-1) {
-            [self.collectionView setContentOffset:CGPointMake(((newIndex-(K_THRESHOLD_TAB_SIZE-1)) *self.itemSize.width), 0) animated:false];
+            NSInteger width = ((newIndex-(K_THRESHOLD_TAB_SIZE-1)) *self.itemSize.width);
+            [self.collectionView setContentOffset:CGPointMake(width, 0) animated:false];
         } else {
             [self.collectionView setContentOffset:CGPointMake(0, 0) animated:false];
         }

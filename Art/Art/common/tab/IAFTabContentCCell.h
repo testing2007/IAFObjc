@@ -1,6 +1,6 @@
 //
 //  IAFTabContentCCell.h
-//  Beautifal
+//  ART
 //
 //  Created by ZhiQiang wei on 2020/3/28.
 //  Copyright © 2020 ZhiQiang wei. All rights reserved.
