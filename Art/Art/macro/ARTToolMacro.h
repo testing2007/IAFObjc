@@ -14,7 +14,7 @@
 #import "UIImage+Extension.h"
 #import "NSDictionary+Accessors.h"
 #import "UIView+Frame.h"
-
+#import "NSString+Extension.h"
 
 
 

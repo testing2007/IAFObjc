@@ -29,6 +29,16 @@
     NSLog(@"%@--viewWillDisappear", NSStringFromClass([self class]));
 }
 
+- (void)popViewControllerAnimated:(BOOL)animated completion:(void (^)(void))completion {
+    if(self.navigationController && self.navigationController.viewControllers.count>1) {
+        if(self.presentedViewController) {
+            [self.navigationController dismissViewControllerAnimated:animated completion:completion];
+        } else {
+            [self.navigationController popViewControllerAnimated:animated];
+        }
+    }
+}
+
 /*
 #pragma mark - Navigation
 

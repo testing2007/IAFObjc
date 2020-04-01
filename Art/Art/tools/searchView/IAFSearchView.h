@@ -12,22 +12,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//@protocol IAFSearchViewDelegate <NSObject>
-//
-//@optional
-//- (void)searchViewTextDidBeginEditing;
-//- (void)searchViewTextDidEndEditingKeywork:(NSString*)keyword;
-//
-//- (void)searchViewSearchButtonClicked:(NSString*)keyword;
-//- (void)searchViewCancelButtonClicked;
-//
+@protocol IAFSearchViewDelegate <NSObject>
+
+@optional
+- (void)searchViewTextDidBeginEditing;
+- (void)searchViewTextDidEndEditingKeywork:(NSString*)keyword;
+
+- (void)searchViewSearchButtonClicked:(NSString*)keyword;
+- (void)searchViewCancelButtonClicked;
+
 //- (void)searchViewClickedKeyword:(NSString*)keyword;
-//
-//@end
+
+@end
 
 @interface IAFSearchView : UIView
 
-//-(instancetype)initWithCustomRecommendView:(UIView*)recommendView customResultView:(UIView*)resultView isCacheHistory:(BOOL)bCacheHistory ;
+@property (nonatomic, weak) id<IAFSearchViewDelegate>  delegate;
+
+- (void)releaseFocus;
 
 @end
 

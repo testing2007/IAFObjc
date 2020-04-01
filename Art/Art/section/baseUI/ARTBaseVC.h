@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ARTBaseVC : UIViewController
 
+- (void)popViewControllerAnimated:(BOOL)animated completion:(void (^)(void))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

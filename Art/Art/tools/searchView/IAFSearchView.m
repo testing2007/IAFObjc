@@ -75,11 +75,42 @@
 
 - (void)onCancelSearch {
     [self.searchBar resignFirstResponder];
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(searchViewCancelButtonClicked)]) {
+        [self.delegate searchViewCancelButtonClicked];
+    }
+}
+
+- (void)releaseFocus{
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma mark -- UISearchBarDelegate
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    return true;
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(searchViewTextDidBeginEditing)]) {
+        [self.delegate searchViewTextDidBeginEditing];
+    }
 }
+
+- (void)searchBarTextDidEndEditing:(UISearchBar*)searchBar {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(searchViewTextDidEndEditingKeywork:)]) {
+            [self.delegate searchViewTextDidEndEditingKeywork:searchBar.text];
+        [self.searchBar resignFirstResponder];
+    }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(searchViewSearchButtonClicked:)]) {
+            [self.delegate searchViewSearchButtonClicked:searchBar.text];
+            [self.searchBar resignFirstResponder];
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar  {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(searchViewCancelButtonClicked)]) {
+        [self.delegate searchViewCancelButtonClicked];
+    }
+}
+
 
 @end

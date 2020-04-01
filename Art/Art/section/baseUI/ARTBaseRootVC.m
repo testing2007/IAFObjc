@@ -31,6 +31,7 @@
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+     self.navigationController.navigationBar.translucent = YES;
     
     if(self.navibackgroundView == nil) {
         UIView *navibackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, K_NAVIGATION_BAR_OFFSET)];

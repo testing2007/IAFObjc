@@ -6,19 +6,18 @@
 //  Copyright © 2020 ZhiQiang wei. All rights reserved.
 //
 
-#import "ARTSearchCCell.h"
+#import "ARTSearchHistoryCCell.h"
 #import "IAFFloatView.h"
 
-@interface ARTSearchCCell ()
+@interface ARTSearchHistoryCCell ()
 
 @property (nonatomic, strong) UILabel  *titleLabel;
 @property (nonatomic, strong) UIButton  *delBtn;
-
 @property (nonatomic, strong) IAFFloatView  *floatView;
 
 @end
 
-@implementation ARTSearchCCell
+@implementation ARTSearchHistoryCCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -69,15 +68,14 @@
         _delBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_delBtn setTitle:@"删除" forState:UIControlStateNormal];
         _delBtn.titleLabel.font = [UIFont bxg_fontRegularWithSize:14];
-        [_delBtn addTarget:self action:@selector(onDeleteHistory:) forControlEvents:UIControlEventTouchUpInside];
+        [_delBtn addTarget:self action:@selector(onRemoveAllHistory:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _delBtn;
 }
 
-- (void)onDeleteHistory:(UIButton*)sender {
-//    [self.floatView removeFloatData];
-    if(self.removeHistoryBlock) {
-        self.removeHistoryBlock();
+- (void)onRemoveAllHistory:(UIButton*)sender {
+    if(self.removeAllHistoryBlock) {
+        self.removeAllHistoryBlock();
     }
 }
 
@@ -98,13 +96,13 @@
     return _floatView;
 }
 
-- (void)setTexts:(NSArray*)arrText {
+- (void)setHistoryKeywords:(NSArray*)keywords {
     
     [self.floatView removeFloatData];
-    
-    for(int i=0; i<arrText.count; ++i) {
+        
+    for(int i=0; i<keywords.count; ++i) {
         UILabel *label = [[UILabel alloc] init];
-        label.text = arrText[i];
+        label.text = keywords[i];
         label.textAlignment = NSTextAlignmentLeft;
         label.font = [UIFont bxg_fontMediumWithSize:15];
         label.textColor = [UIColor colorWithHex:0x999999];
