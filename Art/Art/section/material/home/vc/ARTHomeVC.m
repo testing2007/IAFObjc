@@ -90,9 +90,9 @@
 }
 
 #pragma mark -- UIScrollViewDelegate
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    _beginContentOffsetY = scrollView.contentOffset.y;
-//}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _beginContentOffsetY = scrollView.contentOffset.y;
+}
 //
 //- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
 //    if(_beginContentOffsetY<scrollView.contentOffset.y) {
@@ -107,15 +107,16 @@
 //}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    UIPanGestureRecognizer *ges = scrollView.panGestureRecognizer;
-    CGFloat velocity = [ges velocityInView:scrollView].y;
-    if(velocity < -5) {
+    if(_beginContentOffsetY+44<scrollView.contentOffset.y) {
+        NSLog(@"up offset=%f", fabs(scrollView.contentOffset.y-_beginContentOffsetY));
         //上滑
         if(self.upScrollBlock) {
             self.upScrollBlock();
         }
-    } else if(velocity > 5) {
+    }
+    else if(_beginContentOffsetY+44>scrollView.contentOffset.y) {
         //下滑
+        NSLog(@"down offset=%f", fabs(scrollView.contentOffset.y-_beginContentOffsetY));
         if(self.downScrollBlock) {
             self.downScrollBlock();
         }

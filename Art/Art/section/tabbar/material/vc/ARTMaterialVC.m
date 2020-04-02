@@ -87,19 +87,19 @@
         _homeVC = [[ARTHomeVC alloc] init];
         Weak(weakSelf)
         _homeVC.upScrollBlock = ^{
-            [UIView animateWithDuration:0.1 animations:^{
+            [super.navigationController setNavigationBarHidden:YES animated:false];
+            [UIView animateWithDuration:0.2 animations:^{
                 [weakSelf.tabView mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.top.offset(K_STATUS_BAR_OFFSET);
                 }];
-                [super.navigationController setNavigationBarHidden:YES animated:TRUE];
             }];
         };
         _homeVC.downScrollBlock = ^{
-            [UIView animateWithDuration:0.1 animations:^{
+            [super.navigationController setNavigationBarHidden:NO animated:false];
+            [UIView animateWithDuration:0.2 animations:^{
                 [weakSelf.tabView mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.top.offset(K_NAVIGATION_BAR_OFFSET);
                 }];
-                [super.navigationController setNavigationBarHidden:NO animated:TRUE];
 
             }];
         };
